@@ -1,4 +1,6 @@
 # Importa o módulo models do Django, que usamos para criar as tabelas do banco de dados
+import uuid
+
 from django.db import models
 
 # Importa o modelo de usuário padrão do Django (caso quisermos relacionar algo com usuários do sistema)
@@ -9,6 +11,7 @@ from django.contrib.auth.models import User
 # Isso significa que essa classe será uma tabela no banco de dados
 class Cliente(models.Model):
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, auto_created=True)
     # Campo de texto para armazenar o nome do cliente
     # max_length define o tamanho máximo do texto
     nome = models.CharField(max_length=100)
