@@ -125,13 +125,6 @@ def excluir_cliente(request, cliente):
     cliente.delete()
     return redirect("clientes")
 
-@login_required
-def atualizar_clientes(request):
-    if request.method == "POST":
-        selected_names = request.POST.getlist("selected_users")
-        User.objects.filter(names=selected_names).update(is_active=True)
-    users = User.objects.all()
-    return render(request, "clientes.html", {"users": users})
 
 # ================================
 # LISTAR CLIENTES
