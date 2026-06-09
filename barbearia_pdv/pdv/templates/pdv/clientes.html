@@ -8,25 +8,30 @@
     <h2>Lista de Clientes</h2>
     <a href="{% url 'criar_cliente' %}" class="btn">Criar Cliente</a>
 </div>
-<table>
-    <tr>
-        <th>Seleção</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Telefone</th>
-    </tr>
+<form method="POST" action="{% url 'excluir_cliente' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>Seleção</th>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+        </tr>
     {% for cliente in clientes %}
-    <tr>
-        <td>
-            <input type="checkbox" name="clientes_selecionados" value="{{ cliente.id }}">
-        </td>
-        <td>{{ cliente.nome }}</td>
-        <td>{{ cliente.email }}</td>
-        <td>{{ cliente.telefone }}</td>
-    </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="clientes_selecionados" value="{{ cliente.id }}">
+            </td>
+            <td>{{ cliente.id }}</td>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.telefone }}</td>
+        </tr>
     {% endfor %}
-</table>
+    </table>
     <button type="submit" class="btn">Excluir Selecionados</button>
+</form>
 {% if messages %}
     {% for message in messages %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
