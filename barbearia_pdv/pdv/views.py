@@ -119,6 +119,45 @@ def criar_cliente(request):
 # ================================
 # EXCLUIR CLIENTE
 # ================================
+@login_required
+def excluir_cliente(request, cliente_id):
+    # Busca o cliente pelo ID ou retorna 404 se não existir
+    cliente = get_object_or_404(Cliente, id=cliente_id)
+
+    # Se a requisição for POST, confirma a exclusão
+    if request.method == 'POST':
+        cliente.delete()
+        # Redireciona para a lista de clientes após excluir
+        return redirect('clientes')
+
+    # Se for GET, renderiza uma página de confirmação
+    return render(request, 'pdv/excluir_cliente.html', {'cliente': cliente})
+
+
+# ================================
+# EDITAR CLIENTE
+# ================================
+@login_required
+def editar_cliente(request, cliente_id):
+    # Busca o cliente pelo ID ou retorna 404 se não existir
+    cliente = get_object_or_404(Cliente, id=cliente_id)
+
+    # Se o formulário foi enviado
+    if request.method == 'POST':
+        # Preenche o formulário com os dados enviados e o objeto existente
+        form = ClienteForm(request.POST, instance=cliente)
+        # Valida os dados
+        if form.is_valid():
+            # Salva as alterações
+            form.save()
+            # Redireciona para a lista de clientes
+            return redirect('clientes')
+    else:
+        # Se for GET, cria o formulário já preenchido com os dados do cliente
+        form = ClienteForm(instance=cliente)
+
+    # Renderiza a página de edição
+    return render(request, 'pdv/editar_cliente.html', {'form': form, 'cliente': cliente})
 
 
 # ================================

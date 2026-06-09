@@ -7,7 +7,7 @@ from .views import (
     criar_cliente, criar_servico,
     register_view, logout_view,
     login_view, servicos_view,
-    dashboard, clientes_view, agendamentos_view,
+    dashboard, clientes_view, agendamentos_view
 )
 
 # Lista que armazena todas as rotas do app
