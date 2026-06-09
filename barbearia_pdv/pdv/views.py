@@ -1,6 +1,7 @@
 # Importa a função render para retornar páginas HTML
 # e redirect para redirecionar o usuário para outra rota
-from django.contrib.messages.context_processors import messages
+from django.contrib import messages
+from django.db import transaction
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Importa funções responsáveis pela autenticação de usuários
@@ -120,18 +121,21 @@ def criar_cliente(request):
 # EXCLUIR CLIENTE
 # ================================
 @login_required
-def excluir_cliente(request, cliente_id):
-    # Busca o cliente pelo ID ou retorna 404 se não existir
-    cliente = get_object_or_404(Cliente, id=cliente_id)
+def excluir_cliente(request):
+    if request.method == "POST":
+        # Pega todos os IDs enviados pelo formulário
+        ids_selecionados = request.POST.getlist("clientes_selecionados")
 
-    # Se a requisição for POST, confirma a exclusão
-    if request.method == 'POST':
-        cliente.delete()
-        # Redireciona para a lista de clientes após excluir
-        return redirect('clientes')
+        if ids_selecionados:
+            with transaction.atomic():
+                deletados, _ = Cliente.objects.filter(id__in=ids_selecionados).delete()
+            # Exclui todos os clientes com os IDs selecionados
+            messages.success(request, f"Clientes {deletados} foram excluídos com sucesso.")
+        else:
+            messages.warning(request, "Nenhum cliente foi selecionado para exclusão.")
 
-    # Se for GET, renderiza uma página de confirmação
-    return render(request, 'pdv/excluir_cliente.html', {'cliente': cliente})
+    # Redireciona de volta para a lista de clientes
+    return redirect("clientes")
 
 
 # ================================
