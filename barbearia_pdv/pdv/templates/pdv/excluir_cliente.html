@@ -1,7 +1,14 @@
-<h2>Excluir Cliente</h2>
-<p>Tem certeza que deseja excluir o cliente {{ cliente.nome }}?</p>
+{% extends "pdv/base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
+<h2>Excluir Clientes</h2>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Confirmar</button>
-    <a href="{% url 'clientes' %}">Cancelar</a>
+    {% for cliente in clientes %}
+        <label>
+            <input type="checkbox" name="clientes_selecionados" value="{{ cliente.id }}">
+            {{ cliente.nome }}
+        </label><br>
+    {% endfor %}
+    <button type="submit">Excluir Selecionados</button>
 </form>
