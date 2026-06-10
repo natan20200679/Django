@@ -118,20 +118,7 @@ def criar_cliente(request):
 # ================================
 @login_required
 def excluir_cliente(request):
-    # Busca o cliente pelo ID ou retorna 404 se não existir
-    cliente = get_object_or_404(Cliente, id=id)
-
-    # Se a requisição for POST, significa que o usuário confirmou a exclusão
-    if request.method == 'POST':
-        cliente.delete()
-        # Exibe uma mensagem de sucesso
-        messages.success(request, 'Cliente excluído com sucesso!')
-        # Redireciona para a lista de clientes
-        return redirect('clientes')
-
-    # Se for GET, renderiza uma página de confirmação
-    return render(request, 'pdv/excluir_cliente.html', {'cliente': cliente})
-
+    pass
 
 # ================================
 # EDITAR CLIENTE
