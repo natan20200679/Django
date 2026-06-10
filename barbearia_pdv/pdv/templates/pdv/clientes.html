@@ -30,13 +30,15 @@
         </tr>
     {% endfor %}
     </table>
-    <button type="submit" class="btn">Excluir Selecionados</button>
+    <div class="botoes-centrais">
+      <button class="btn-excluir">Excluir Selecionados</button>
+      <button class="btn-editar">Editar Selecionados</button>
+    </div>
 </form>
 {% if messages %}
     {% for message in messages %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     {% endfor %}
 {% endif %}
