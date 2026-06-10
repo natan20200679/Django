@@ -1,11 +1,8 @@
 # Importa o módulo models do Django, que usamos para criar as tabelas do banco de dados
-import uuid
-
 from django.db import models
 
 # Importa o modelo de usuário padrão do Django (caso quisermos relacionar algo com usuários do sistema)
 from django.contrib.auth.models import User
-
 
 # Criamos a classe Cliente que herda de models.Model
 # Isso significa que essa classe será uma tabela no banco de dados
@@ -34,6 +31,7 @@ class Cliente(models.Model):
 class Servico(models.Model):
 
     # Nome do serviço (ex: Corte, Barba, Sobrancelha)
+    objects = None
     nome = models.CharField(max_length=100)
 
     # Campo decimal usado para valores monetários
@@ -53,6 +51,7 @@ class Agendamento(models.Model):
     # Ou seja, cada agendamento pertence a um cliente
     # CASCADE significa que se o cliente for deletado,
     # os agendamentos dele também serão apagados
+    objects = None
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
     # Relacionamento com a tabela Servico
