@@ -10,9 +10,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 # logout -> encerra a sessão
 from django.contrib.auth import login as auth_login, authenticate, logout
 
-# Importa o modelo padrão de usuários do Django
-from django.contrib.auth.models import User
-
 # Importa os Models criados no projeto
 # Esses models representam as tabelas do banco de dados
 from .models import Cliente, Servico, Agendamento
