@@ -72,3 +72,25 @@ main {
     flex-grow: 1; /* Faz o h2 ocupar o espaço disponível */
     text-align: center; /* Centraliza o texto */
 }
+
+.botoes-centrais {
+    display: grid; /* ativa o grid */
+    grid-template-columns: auto auto;
+    justify-content: center;    /* centraliza horizontalmente */
+    gap: 15px;                  /* espaço entre os botões */
+    margin-top: 20px;           /* distância do conteúdo acima */
+}
+
+.botoes-centrais button {
+  background-color: #28a745;  /* verde padrão */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.botoes-centrais button:hover {
+  background-color: #218838;  /* tom mais escuro ao passar o mouse */
+}
