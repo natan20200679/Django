@@ -1,7 +1,6 @@
 # Importa a função render para retornar páginas HTML
 # e redirect para redirecionar o usuário para outra rota
 from django.contrib import messages
-from django.db import transaction
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Importa funções responsáveis pela autenticação de usuários
@@ -119,46 +118,24 @@ def criar_cliente(request):
 # ================================
 @login_required
 def excluir_cliente(request):
-    if request.method == "POST":
-        # Pega todos os IDs enviados pelo formulário
-        ids_selecionados = request.POST.getlist("clientes_selecionados")
+    # Busca o cliente pelo ID ou retorna 404 se não existir
+    cliente = get_object_or_404(Cliente, id=id)
 
-        if ids_selecionados:
-            with transaction.atomic():
-                deletados, _ = Cliente.objects.filter(id__in=ids_selecionados).delete()
-            # Exclui todos os clientes com os IDs selecionados
-            messages.success(request, f"Clientes {deletados} foram excluídos com sucesso.")
-        else:
-            messages.warning(request, "Nenhum cliente foi selecionado para exclusão.")
+    # Se a requisição for POST, significa que o usuário confirmou a exclusão
+    if request.method == 'POST':
+        cliente.delete()
+        # Exibe uma mensagem de sucesso
+        messages.success(request, 'Cliente excluído com sucesso!')
+        # Redireciona para a lista de clientes
+        return redirect('clientes')
 
-    # Redireciona de volta para a lista de clientes
-    return redirect("clientes")
+    # Se for GET, renderiza uma página de confirmação
+    return render(request, 'pdv/excluir_cliente.html', {'cliente': cliente})
 
 
 # ================================
 # EDITAR CLIENTE
 # ================================
-@login_required
-def editar_cliente(request, cliente_id):
-    # Busca o cliente pelo ID ou retorna 404 se não existir
-    cliente = get_object_or_404(Cliente, id=cliente_id)
-
-    # Se o formulário foi enviado
-    if request.method == 'POST':
-        # Preenche o formulário com os dados enviados e o objeto existente
-        form = ClienteForm(request.POST, instance=cliente)
-        # Valida os dados
-        if form.is_valid():
-            # Salva as alterações
-            form.save()
-            # Redireciona para a lista de clientes
-            return redirect('clientes')
-    else:
-        # Se for GET, cria o formulário já preenchido com os dados do cliente
-        form = ClienteForm(instance=cliente)
-
-    # Renderiza a página de edição
-    return render(request, 'pdv/editar_cliente.html', {'form': form, 'cliente': cliente})
 
 
 # ================================
