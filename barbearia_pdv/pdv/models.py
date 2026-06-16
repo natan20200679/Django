@@ -8,8 +8,6 @@ from django.contrib.auth.models import User
 # Isso significa que essa classe será uma tabela no banco de dados
 class Cliente(models.Model):
 
-    objects = None
-    id = models.IntegerField(primary_key=True, editable=False, auto_created=True)
     # Campo de texto para armazenar o nome do cliente
     # max_length define o tamanho máximo do texto
     nome = models.CharField(max_length=100)
