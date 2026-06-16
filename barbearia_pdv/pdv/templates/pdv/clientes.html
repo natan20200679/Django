@@ -26,12 +26,11 @@
             <td>{{ cliente.email }}</td>
             <td>{{ cliente.telefone }}</td>
             <td>
-                <!-- O link direciona para a tela excluir_cliente.html perfeitamente -->
-                <a href="{% url 'excluir_cliente' cliente.id %}" class="btn-excluir">Excluir</a>
-            </td>
-            <td>
-                <a href="#" class="btn-editar">Editar</a>
-                <a href="{% url 'excluir_cliente' cliente.id %}" class="btn-excluir">Excluir</a>
+                <div class="btn-group">
+                    <a href="#" class="btn-editar">Editar</a>
+                    <a href="{% url 'excluir_cliente' cliente.id %}" class="btn-excluir">Excluir</a>
+                </div>
+
             </td>
         </tr>
     {% endfor %}
