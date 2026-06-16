@@ -1,18 +1,19 @@
 {% extends "pdv/base.html" %}
-{% load static %}
-{% block extra_styles %}
-<link rel="stylesheet" href="{% static 'tabelas/tabelas.css' %}">
-{% endblock %}
 {% block content %}
-<h2>Excluir Clientes</h2>
-<form method="post">
-    {% csrf_token %}
-    {% for cliente in clientes %}
-        <label>
-            <input type="checkbox" name="clientes_selecionados" value="{{ cliente.id }}">
-            {{ cliente.nome }}
-        </label><br>
-    {% endfor %}
-    <button type="submit">Excluir Selecionados</button>
-</form>
+    <div>
+        <h2>Confirmar Exclusão</h2>
+
+        <p>Tem certeza que deseja excluir o cliente <strong>{{ cliente.nome }}</strong>?</p>
+        <p>Esta ação não poderá ser desfeita.</p>
+
+        <!-- Este formulário envia o POST que ativa a exclusão no banco -->
+        <form method="POST" action="{% url 'excluir_cliente' cliente.id %}">
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-danger">Sim, desejo excluir</button>
+
+            <!-- Botão para voltar caso o usuário desista -->
+            <a href="{% url 'clientes' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
 {% endblock %}
