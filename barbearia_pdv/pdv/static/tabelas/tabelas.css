@@ -41,3 +41,34 @@ th {
 tr:hover {
     background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
 }
+
+/* Alinha os botões horizontalmente dentro da célula da tabela */
+.btn-group {
+    display: flex;       /* Ativa o modo Flexbox */
+    gap: 10px;           /* Cria um espaçamento de 10px entre os botões */
+    align-items: center; /* Alinha os botões verticalmente ao centro */
+}
+
+/* Estilo base dos botões de ação */
+.btn-editar, .btn-excluir {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 500;
+    color: white;
+    display: inline-block;
+}
+
+/* Cor do botão Editar */
+.btn-editar {
+    background-color: #007bff;
+}
+.btn-editar:hover {
+    background-color: #0056b3;
+}
+
+/* Cor do botão Excluir */
+.btn-excluir {
+    background-color: #dc3545;
+}
