@@ -117,8 +117,13 @@ def criar_cliente(request):
 # EXCLUIR CLIENTE
 # ================================
 @login_required
-def excluir_cliente(request):
-    pass
+def excluir_cliente(request, id):
+    cliente = get_object_or_404(Cliente, id=id)
+    if request.method == 'POST':
+        cliente.delete()
+        return redirect('clientes')
+    return render(request, 'pdv/excluir_cliente.html', {'cliente': cliente})
+
 
 # ================================
 # EDITAR CLIENTE
