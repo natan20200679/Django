@@ -27,7 +27,7 @@ urlpatterns = [
     # Criar cliente
     path('clientes/criar/', criar_cliente, name='criar_cliente'),
     # Excluir cliente
-    path('clientes/excluir', excluir_cliente, name='excluir_cliente'),
+    path('clientes/excluir/<int:id>/', excluir_cliente, name='excluir_cliente'),
     # Lista de serviços
     path('servicos/', servicos_view, name='servicos'),
     # Criar serviço
