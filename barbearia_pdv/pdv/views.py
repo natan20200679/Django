@@ -128,7 +128,17 @@ def excluir_cliente(request, id):
 # ================================
 # EDITAR CLIENTE
 # ================================
-
+@login_required
+def editar_cliente(request, id):
+    cliente = get_object_or_404(Cliente, id=id)
+    if request.method == 'POST':
+        form = ClienteForm(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()
+            return redirect('clientes')
+    else:
+        form = ClienteForm(instance=cliente)
+    return render(request, 'pdv/editar_cliente.html', {'form': form})
 
 # ================================
 # LISTAR CLIENTES
