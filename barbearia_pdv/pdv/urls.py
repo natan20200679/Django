@@ -7,7 +7,7 @@ from .views import (
     criar_cliente, criar_servico,
     register_view, logout_view,
     login_view, servicos_view,
-    dashboard, clientes_view, agendamentos_view, excluir_cliente
+    dashboard, clientes_view, agendamentos_view, excluir_cliente, editar_cliente
 )
 
 # Lista que armazena todas as rotas do app
@@ -28,6 +28,8 @@ urlpatterns = [
     path('clientes/criar/', criar_cliente, name='criar_cliente'),
     # Excluir cliente
     path('clientes/excluir/<int:id>/', excluir_cliente, name='excluir_cliente'),
+    # Editar cliente
+    path('clientes/editar/<int:id>/', editar_cliente, name='editar_cliente'),
     # Lista de serviços
     path('servicos/', servicos_view, name='servicos'),
     # Criar serviço
