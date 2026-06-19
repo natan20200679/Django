@@ -27,7 +27,7 @@
             <td>{{ cliente.telefone }}</td>
             <td>
                 <div class="btn-group">
-                    <a href="#" class="btn-editar">Editar</a>
+                    <a href="{% url 'editar_cliente' cliente.id %}" class="btn-editar">Editar</a>
                     <a href="{% url 'excluir_cliente' cliente.id %}" class="btn-excluir">Excluir</a>
                 </div>
 
