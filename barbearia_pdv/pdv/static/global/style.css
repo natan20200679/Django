@@ -43,15 +43,18 @@ main {
 
 /* Estilizando o botão */
 .btn {
-    display: block; /* Faz o botão ocupar toda a largura disponível */
-    width: 200px; /* Largura do botão */
-    margin: 20px auto; /* Centraliza o botão */
-    padding: 10px; /* Espaçamento interno do botão */
+    display: inline-block; /* Faz o botão ocupar toda a largura disponível */
+    width: 150px; /* Largura do botão */
+    /*margin: 20px auto; !* Centraliza o botão *!*/
+    padding: 10px 0; /* Espaçamento interno do botão */
     background-color: #28a745; /* Cor de fundo do botão */
     color: white; /* Cor do texto do botão */
     text-align: center; /* Centraliza o texto do botão */
     text-decoration: none; /* Remove o sublinhado */
+    border: none;
     border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer;
+    font-size: 14px;
     transition: background-color 0.3s; /* Transição suave para a cor de fundo */
 }
 
@@ -93,4 +96,20 @@ main {
 
 .botoes-centrais button:hover {
   background-color: #218838;  /* tom mais escuro ao passar o mouse */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 20px; /* Espaço entre eles */
+    margin-top: 20px;
+}
+
+.titulo-editar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
 }
