@@ -8,7 +8,7 @@
   - `source venv/bin/activate` no Linux.
 - Caso haja a necessidade de instalar o Pip, apague o diretório **venv** já existente no projeto e reinstale o ambiente virtual,
   fazendo no terminal:
-  - `pip install virtualenv`
+  - `pip install virtualenv`(caso este comando gere um erro, faça `sudo apt install pythonx.y-venv`, onde "x.y" é a versão do python ativa no sistema e/ou na IDE);
   - `python -m venv venv` no Windows ou `python3 -m venv venv` no Linux;
   - Finalmente execute o comando com **source** mostrado acima.
 - Ainda no terminal, faça:
