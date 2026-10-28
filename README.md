@@ -14,3 +14,5 @@
 - Ainda no terminal, faça:
   - `cd/<diretório do local do projeto>/Django/barbearia_pdv`;
   - `python manage.py runserver` no Windows ou `python3 manage.py runserver` no Linux.
+- Caso ocorra algum erro relacionado ao Django, instale ou reinstale-o no terminal:
+  - `pip install django`.
